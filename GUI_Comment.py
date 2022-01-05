@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'GUI_comment.ui'
+# Form implementation generated from reading ui file 'GUI_Comment.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -11,21 +11,21 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_SubWindow(object):
-    def setupUi(self, SubWindow):
-        SubWindow.setObjectName("SubWindow")
-        SubWindow.resize(1936, 1038)
-        self.centralwidget = QtWidgets.QWidget(SubWindow)
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(1936, 1038)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.tableWidget_commodity = QtWidgets.QTableWidget(self.centralwidget)
-        self.tableWidget_commodity.setGeometry(QtCore.QRect(0, 70, 1921, 941))
+        self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
+        self.tableWidget.setGeometry(QtCore.QRect(0, 70, 1921, 941))
         font = QtGui.QFont()
         font.setFamily("標楷體")
         font.setPointSize(16)
-        self.tableWidget_commodity.setFont(font)
-        self.tableWidget_commodity.setObjectName("tableWidget_commodity")
-        self.tableWidget_commodity.setColumnCount(0)
-        self.tableWidget_commodity.setRowCount(0)
+        self.tableWidget.setFont(font)
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(0)
+        self.tableWidget.setRowCount(0)
         self.label_shopid = QtWidgets.QLabel(self.centralwidget)
         self.label_shopid.setGeometry(QtCore.QRect(11, 11, 99, 21))
         font = QtGui.QFont()
@@ -40,30 +40,30 @@ class Ui_SubWindow(object):
         font.setPointSize(16)
         self.label_itemname.setFont(font)
         self.label_itemname.setObjectName("label_itemname")
-        SubWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(SubWindow)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1936, 21))
         self.menubar.setObjectName("menubar")
-        SubWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(SubWindow)
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
-        SubWindow.setStatusBar(self.statusbar)
+        MainWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(SubWindow)
-        QtCore.QMetaObject.connectSlotsByName(SubWindow)
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, SubWindow):
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        SubWindow.setWindowTitle(_translate("SubWindow", "Shop"))
-        self.label_shopid.setText(_translate("SubWindow", "TextLabel"))
-        self.label_itemname.setText(_translate("SubWindow", "TextLabel"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Shop"))
+        self.label_shopid.setText(_translate("MainWindow", "TextLabel"))
+        self.label_itemname.setText(_translate("MainWindow", "TextLabel"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    SubWindow = QtWidgets.QMainWindow()
-    ui = Ui_SubWindow()
-    ui.setupUi(SubWindow)
-    SubWindow.show()
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())

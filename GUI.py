@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'GUI_Ruten.ui'
+# Form implementation generated from reading ui file 'GUI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -54,6 +54,14 @@ class Ui_MainWindow(object):
         self.tableWidget_commodity.setObjectName("tableWidget_commodity")
         self.tableWidget_commodity.setColumnCount(0)
         self.tableWidget_commodity.setRowCount(0)
+        self.comboBox_website = QtWidgets.QComboBox(self.centralwidget)
+        self.comboBox_website.setGeometry(QtCore.QRect(450, 20, 180, 29))
+        font = QtGui.QFont()
+        font.setFamily("標楷體")
+        font.setPointSize(16)
+        self.comboBox_website.setFont(font)
+        self.comboBox_website.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.comboBox_website.setObjectName("comboBox_website")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1936, 21))
@@ -68,16 +76,16 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Ruten"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Keyword Search"))
         self.label.setText(_translate("MainWindow", "產品名稱"))
         self.pushButton_search.setText(_translate("MainWindow", "開始搜尋"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     MainWindow = QtWidgets.QMainWindow()
+#     ui = Ui_MainWindow()
+#     ui.setupUi(MainWindow)
+#     MainWindow.show()
+#     sys.exit(app.exec_())
