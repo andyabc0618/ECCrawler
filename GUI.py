@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'GUI.ui'
+# Form implementation generated from reading ui file '.\GUI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 421, 71))
+        self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 781, 71))
         self.layoutWidget.setObjectName("layoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -45,17 +45,17 @@ class Ui_MainWindow(object):
         self.pushButton_search.setFont(font)
         self.pushButton_search.setObjectName("pushButton_search")
         self.horizontalLayout.addWidget(self.pushButton_search)
-        self.tableWidget_commodity = QtWidgets.QTableWidget(self.centralwidget)
-        self.tableWidget_commodity.setGeometry(QtCore.QRect(0, 70, 1921, 941))
+        self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
+        self.tableWidget.setGeometry(QtCore.QRect(0, 70, 1921, 941))
         font = QtGui.QFont()
         font.setFamily("標楷體")
         font.setPointSize(16)
-        self.tableWidget_commodity.setFont(font)
-        self.tableWidget_commodity.setObjectName("tableWidget_commodity")
-        self.tableWidget_commodity.setColumnCount(0)
-        self.tableWidget_commodity.setRowCount(0)
+        self.tableWidget.setFont(font)
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(0)
+        self.tableWidget.setRowCount(0)
         self.comboBox_website = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox_website.setGeometry(QtCore.QRect(450, 20, 180, 29))
+        self.comboBox_website.setGeometry(QtCore.QRect(790, 20, 180, 29))
         font = QtGui.QFont()
         font.setFamily("標楷體")
         font.setPointSize(16)
@@ -64,7 +64,11 @@ class Ui_MainWindow(object):
         self.comboBox_website.setObjectName("comboBox_website")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1936, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1936, 27))
+        font = QtGui.QFont()
+        font.setFamily("標楷體")
+        font.setPointSize(16)
+        self.menubar.setFont(font)
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -76,16 +80,6 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Keyword Search"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "EC Search"))
         self.label.setText(_translate("MainWindow", "產品名稱"))
         self.pushButton_search.setText(_translate("MainWindow", "開始搜尋"))
-
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = Ui_MainWindow()
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec_())

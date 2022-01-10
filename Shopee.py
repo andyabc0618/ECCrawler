@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+from numpy import not_equal, ushort
 import requests
 from requests import status_codes
 import pandas as pd
@@ -6,12 +7,15 @@ import emoji
 from datetime import datetime
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QBrush, QImage, QPixmap, QColor
+from PyQt5.QtGui import QBrush, QImage, QPixmap, QColor, QDesktopServices
+from PyQt5.QtCore import QUrl
+
 
 import ShopeeSearch
 import GUI_Shop
 import GUI_Comment
 import Function
+
 
 class Shopee:
     def search(self, keyword):
@@ -78,8 +82,9 @@ class Shopee:
         # check max image num
         max_imgnum = 0
         for i in range( 0, len(data), 1):
-            num = len(data[i]['images'])
-            max_imgnum = max( num, max_imgnum)
+            if data[i]['images'] != None:
+                num = len(data[i]['images'])
+                max_imgnum = max( num, max_imgnum)
         for i in range( 0, max_imgnum, 1):
             attributes['image'+str(i)] = '圖片'+str(i)
         dict_ = {}
@@ -87,6 +92,8 @@ class Shopee:
         for i in range( 0, len(data), 1):
             item = data[i]
             for j in range( 0, len(attributes_key), 1):
+                if data[i]['images'] == None:
+                    continue
                 key = attributes_key[j]
                 key_name = attributes[key]
                 if key == 'ctime':
@@ -129,7 +136,7 @@ class Shopee:
 
     def show_table( self, gui, df):
         keys  = list(df)
-        table = gui.tableWidget_commodity
+        table = gui.tableWidget
         table.setColumnCount(len(keys))
         table.setRowCount(len(df[keys[0]])+1)
         table.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
@@ -185,8 +192,13 @@ class Shopee:
             df_array = df.values
             for i in range( 0, df.shape[0], 1):
                 for j in range( 0, df.shape[1], 1):
-                    gui.shop_window.tableWidget.setItem( i, j, QTableWidgetItem(str(df_array[i,j])))
-        
+                    item = QTableWidgetItem(str(df_array[i,j]))
+                    if keys[j] == '商品ID':
+                        item.setForeground(QBrush(QColor(0,0,255)))
+                    gui.shop_window.tableWidget.setItem( i, j, item)
+
+            gui.shop_window.tableWidget.doubleClicked.connect(lambda:gui.shop_window.index( df, shopid, shopname))
+
 
     def show_comment( self, gui, shopid, shopname, itemid, itemname):
         data = ShopeeSearch.search_comment( shopid, itemid, itemname)
@@ -237,10 +249,30 @@ class Shopee:
                             img_p = img_p.scaled(350,350)
                             w = QLabel()
                             w.setPixmap(img_p)
+
                             gui.comment_window.tableWidget.setCellWidget( i, j, w)
                         else:
                             gui.comment_window.tableWidget.setItem( i, j, QTableWidgetItem(str(df_array[i,j])))
+                
+                gui.comment_window.tableWidget.doubleClicked.connect(lambda:gui.comment_window.index(df))
+                
 
+
+    def url_search( self, url):
+        shopid, itemid, itemname = self.url_parser(url)
+        shopaccount, shopname = ShopeeSearch.search_shopaccount(shopid, itemid, itemname)
+        self.show_shop( self, shopid, shopname)
+
+    def url_parser( self, url):
+        # remove query
+        url = url.split('?')[0]
+        # remove domain
+        url = url.replace('https://shopee.tw/','')
+        # split url
+        itemname, url = url.split('-i.')
+        shopid,itemid = url.split('.')
+
+        return shopid, itemid, itemname
 
 
 class ShopWindow( QMainWindow, GUI_Shop.Ui_MainWindow):
@@ -248,7 +280,29 @@ class ShopWindow( QMainWindow, GUI_Shop.Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
 
+    def index( self, df, shopid, shopname):
+        #selected cell index
+        index  = self.tableWidget.selectionModel().currentIndex()
+        column = index.column()
+        row    = index.row()
+
+        itemid   = str(df['商品ID'][row])
+        itemname = str(df['商品名稱'][row])
+        self.shopee = Shopee()
+        self.shopee.show_comment( self, shopid, shopname, itemid, itemname)
+
+
 class CommentWindow( QMainWindow, GUI_Comment.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
+    def index( self, df):        
+        #selected cell index
+        index  = self.tableWidget.selectionModel().currentIndex()
+        column = index.column()
+        row    = index.row()
+        df_array = df.values
+        img_url = QUrl('https://cf.shopee.tw/file/'+df_array[row,column])
+        QDesktopServices.openUrl(img_url)
+

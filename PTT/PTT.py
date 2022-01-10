@@ -4,6 +4,19 @@ from requests_html import HTML
 
 import datetime as dt
 
+def ptt_alert(url, keyword):
+    url          = url # 網址
+    resp         = fetch(url) # 取得網頁內容
+    post_entries = parse_article_entries(resp.text) # 取得各列標題
+    print('[%s] 連線成功，開始搜尋目標「%s」\n' %(dt.datetime.now(), keyword))
+
+
+    for entry in post_entries:
+        meta = parse_article_meta(entry)
+        # 如果找到關鍵字，而且還沒截止，寄信通知我
+        # 記得先試著轉小寫，否則大小寫視作不同
+        if keyword in meta['title'].lower() :
+            print(meta['title'])
 
 def fetch(url):
     # 傳入網址，向 PTT 回答已經滿 18 歲，回傳網頁內容
@@ -35,18 +48,6 @@ def parse_article_meta(entry):
         meta['link'] = '[Deleted]'
     return meta
 
-def ptt_alert(url, keyword):
-    url          = url # 網址
-    resp         = fetch(url) # 取得網頁內容
-    post_entries = parse_article_entries(resp.text) # 取得各列標題
-    print('[%s] 連線成功，開始搜尋目標「%s」\n' %(dt.datetime.now(), keyword))
 
-
-    for entry in post_entries:
-        meta = parse_article_meta(entry)
-        # 如果找到關鍵字，而且還沒截止，寄信通知我
-        # 記得先試著轉小寫，否則大小寫視作不同
-        if keyword in meta['title'].lower() :
-            print(meta['title'])
 
 

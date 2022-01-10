@@ -6,7 +6,7 @@ import datetime as dt
 
 if __name__ == '__main__':
     URL = 'https://www.ptt.cc/bbs/Lifeismoney/index.html'
-    KEYWORD = '序號'
+    KEYWORD = '跨年'
 
     try:
         PTT.ptt_alert(URL, KEYWORD) # 開始執行

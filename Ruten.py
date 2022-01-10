@@ -62,7 +62,7 @@ class Ruten:
 
     def show_table( self, gui, df):
         keys  = list(df)
-        table = gui.tableWidget_commodity
+        table = gui.tableWidget
         table.setColumnCount(len(keys))
         table.setRowCount(len(df[keys[0]])+1)
         table.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
