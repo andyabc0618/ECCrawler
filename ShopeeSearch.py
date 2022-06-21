@@ -14,7 +14,6 @@ def search_keyword(keyword):
 
         base_url = 'https://shopee.tw/api/v2/search_items/'
         query    = f"by=relevancy&keyword={keyword}&limit=100&newest=0&order=desc&page_type=search&version=2"
-        # query    = f"by=relevancy&keyword={keyword}&limit=10&newest=0&order=desc&page_type=search&version=2"
 
         url      = base_url + '?' + query
         session  = requests.Session()

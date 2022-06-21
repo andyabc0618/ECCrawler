@@ -21,7 +21,6 @@ class Shopee:
     def search(self, keyword):
         data = ShopeeSearch.search_keyword(keyword)
         if data != None:
-            # attributes={'shopid':'賣家ID', 'itemid':'商品ID', 'name':'商品名稱', 'shop_location':'賣場位置', 'ctime':'上架時間', 'historical_sold':'已售出數量', 'stock':'庫存', 'liked_count':'喜歡數', 'view_count':'瀏覽數', 'currency':'貨幣', 'price_before_discount':'原價', 'discount':'折扣', 'price':'實際價格', 'price_min_before_discount':'	折扣前價格範圍(最低)', 'price_max_before_discount':'折扣前價格範圍(最高)', 'is_official_shop': '是否為官方商城?', }
             attributes={'shopid':'賣家ID','shopacc':'賣家帳號','shopname':'賣家名稱', 'itemid':'商品ID', 'name':'商品名稱', 'shop_location':'賣場位置', 'ctime':'上架時間', 'historical_sold':'已售出數量', 'stock':'庫存', 'liked_count':'喜歡數', 'view_count':'瀏覽數', 'price':'實際價格','url':'網址'}
             df = self.data_to_dataframe( data, attributes)
             return df
@@ -120,16 +119,6 @@ class Shopee:
 
 
     def data_to_csv( self, csvname, df):
-        # df_key = list(df)
-        # df_array = df.values
-        # with open(csvname+'.csv','w+', newline='', encoding="utf_8_sig") as csvfile:
-        #     writer = csv.writer(csvfile)
-        #     writer.writerow(df_key)
-        #     for i in range( 0, len(df), 1):
-        #        detail = []
-        #        for j in range( 0, len(df_key), 1):
-        #             detail.append(df_array[i][j]) 
-        #     writer.writerow(detail)
         csvname = Function.check_csvname(csvname)
         df.to_csv('./蝦皮/'+csvname+'.csv', encoding='utf-8-sig', index=False)
 
@@ -232,7 +221,6 @@ class Shopee:
                 for i in range( 6, len(keys), 1):
                     gui.comment_window.tableWidget.setColumnWidth(i,400)
                 
-                # TODO: 要加入圖片的例外狀況，因為要發請求，取得圖片! 
                 df_key = list(df)
                 df_array = df.values
                 for i in range( 0, df.shape[0], 1):
