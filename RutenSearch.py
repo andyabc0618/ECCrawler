@@ -3,6 +3,7 @@ import requests
 import urllib
 from bs4 import BeautifulSoup
 import json
+import csv
 
 def search_keyword(keyword):
     headers = {

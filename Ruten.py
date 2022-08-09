@@ -4,7 +4,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
 
 
-from . import RutenSearch
+import RutenSearch
 
 class Ruten:
     def search( self, keyword):
