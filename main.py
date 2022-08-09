@@ -3,12 +3,11 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
 
 import sys
-import logging
 
-import GUI
-import Shopee
-import Ruten
-import Yahoo
+from GUI import GUI
+from Shopee import Shopee
+from Ruten import Ruten
+from Yahoo import Yahoo
 import Function
 
 class MainWindow( QMainWindow, GUI.Ui_MainWindow):

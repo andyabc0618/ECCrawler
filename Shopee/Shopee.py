@@ -11,9 +11,9 @@ from PyQt5.QtGui import QBrush, QImage, QPixmap, QColor, QDesktopServices
 from PyQt5.QtCore import QUrl
 
 
-import ShopeeSearch
-import GUI_Shop
-import GUI_Comment
+from . import ShopeeSearch
+from GUI import GUI_Shop
+from GUI import GUI_Comment
 import Function
 
 
