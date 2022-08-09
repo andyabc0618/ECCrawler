@@ -2,11 +2,9 @@
 import emoji
 from datetime import datetime
 import pandas as pd
-from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
 
-
-import YahooSearch
+from . import YahooSearch
 
 class Yahoo:
     def search( self, keyword):
